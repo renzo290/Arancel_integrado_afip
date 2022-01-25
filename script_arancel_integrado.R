@@ -22,7 +22,7 @@ download.file(
 unzip(zipfile = 'Bases_afip/arancel.zip', exdir = "Bases_afip")
 unlink('Bases_afip/arancel.zip')
 
-nomenclador <- readr::read_delim("Bases_afip/nomenclador_24012022.txt", 
+nomenclador <- readr::read_delim("Bases_afip/nomenclador_25012022.txt", 
                                    delim = "@", escape_double = FALSE, col_names = FALSE, 
                                    trim_ws = TRUE)
 View(nomenclador)
@@ -59,6 +59,12 @@ nomenclador <- nomenclador %>%
          Reintegro_intrazona = as.numeric(Reintegro_intrazona),
          Codigo_unidad_derecho_especifico = as.numeric(Codigo_unidad_derecho_especifico))
 
+#Se modifica el encoding de la columna "Descripcion"
+
+Encoding(nomenclador$Descripcion) <- "latin1" 
+
+#Tablas resumidas
+
 table(nomenclador$Derecho_exportacion)
 table(nomenclador$Codigo_unidad_derecho_especifico)
 table(nomenclador$Codigo_unidad_estadistica)
@@ -71,5 +77,20 @@ if(!file.exists("Base_depurada")) {
   dir.create("Base_depurada")
 }
 
-write.csv(nomenclador, file = "Base_depurada/nomenclador.csv")
+#Formato Excel
+
+write.xlsx(nomenclador, file = "Base_depurada/nomenclador.xlsx", dec = ",",
+           overwrite = T) 
+
+#Formato csv
+
+write.csv(nomenclador, file = "Base_depurada/nomenclador.csv") 
+
+
+
+
+
+
+
+
 
