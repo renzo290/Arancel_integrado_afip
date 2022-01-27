@@ -22,7 +22,7 @@ download.file(
 unzip(zipfile = 'Bases_afip/arancel.zip', exdir = "Bases_afip")
 unlink('Bases_afip/arancel.zip')
 
-nomenclador <- readr::read_delim("Bases_afip/nomenclador_25012022.txt", 
+nomenclador <- readr::read_delim("Bases_afip/nomenclador_27012022.txt", 
                                    delim = "@", escape_double = FALSE, col_names = FALSE, 
                                    trim_ws = TRUE)
 View(nomenclador)
@@ -45,10 +45,9 @@ nomenclador <- nomenclador %>%
   filter(Caracteres == 15) %>% 
   filter(Capitulo != "00")
 
-nomenclador <- select(nomenclador, SIM, Capitulo, NCM_4, NCM, Descripcion, Derecho_exportacion,
-                      Derecho_impo_extrazona, Derecho_impo_intrazona, Derecho_impo_EM, 
-                      Reintegro_extrazona, Reintegro_intrazona, Codigo_unidad_estadistica,
-                      Codigo_unidad_derecho_especifico)
+nomenclador <- select(nomenclador, SIM, Capitulo, NCM_4, NCM, Descripcion, Derecho_exportacion, 
+                      Reintegro_intrazona, Reintegro_extrazona,
+                      Derecho_impo_intrazona, Derecho_impo_extrazona)
 
 nomenclador <- nomenclador %>% 
   mutate(Derecho_exportacion = as.numeric(Derecho_exportacion),
@@ -66,10 +65,17 @@ Encoding(nomenclador$Descripcion) <- "latin1"
 #Tablas resumidas
 
 table(nomenclador$Derecho_exportacion)
-table(nomenclador$Codigo_unidad_derecho_especifico)
-table(nomenclador$Codigo_unidad_estadistica)
 table(nomenclador$Derecho_impo_extrazona)
-table(nomenclador$Derecho_impo_EM)
+table(nomenclador$Derecho_impo_intrazona)
+
+#Agrupo a 8 dígitos
+
+ncm <- nomenclador %>% 
+  group_by(NCM) %>% 
+  summarise(cantidad = n(),
+            dex = mean(Derecho_exportacion))
+
+sum(ncm$cantidad)
 
 ####Se exportan el archivo en otro formato####
 
@@ -85,12 +91,5 @@ write.xlsx(nomenclador, file = "Base_depurada/nomenclador.xlsx", dec = ",",
 #Formato csv
 
 write.csv(nomenclador, file = "Base_depurada/nomenclador.csv") 
-
-
-
-
-
-
-
 
 
