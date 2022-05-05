@@ -3,10 +3,15 @@
 
 #Paquetes
 
+
 library(tidyverse)
-require(openxlsx)
+library(openxlsx)
 
 #Si no está creada, se crea una carpeta para guardar las bases de AFIP
+
+#Para chequear y configurar directorio de trabajo
+#getwd()
+#setwd("C:\Users\Ministerio\Desktop\Renzo\Proyectos RStudio\Arancel_integrado")
 
 if(!file.exists("Bases_afip")) {
   dir.create("Bases_afip")
@@ -19,10 +24,10 @@ download.file(
   destfile = "Bases_afip/arancel.zip", mode='wb'
 )
 
-unzip(zipfile = 'Bases_afip/arancel.zip', exdir = "Bases_afip")
-unlink('Bases_afip/arancel.zip')
+unzip(zipfile = 'Bases_afip/arancel.zip', exdir = "Bases_afip") #Descomprime
+unlink('Bases_afip/arancel.zip') #Borra el archivo .zip
 
-nomenclador <- readr::read_delim("Bases_afip/nomenclador_27012022.txt", 
+nomenclador <- readr::read_delim("Bases_afip/nomenclador_05052022.txt", 
                                    delim = "@", escape_double = FALSE, col_names = FALSE, 
                                    trim_ws = TRUE)
 View(nomenclador)
