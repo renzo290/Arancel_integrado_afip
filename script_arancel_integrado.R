@@ -1,18 +1,18 @@
 
-#####Depuraci√≥n de la base de Arancel Integrado Com√∫n desde la p√°gina de AFIP####
+#####DepuraciÛn de la base de Arancel Integrado Com˙n desde la p·gina de AFIP####
 
 #Paquetes
 
 library(tidyverse)
 require(openxlsx)
 
-#Si no est√° creada, se crea una carpeta para guardar las bases de AFIP
+#setwd("C:/Users/Ministerio/Documents/arancel_integrado_afip")
+#Si no est· creada, se crea una carpeta para guardar las bases de AFIP
 
 if(!file.exists("Bases_afip")) {
   dir.create("Bases_afip")
 }
-
-#Se descargan los archivos de la p√°gina de AFIP y se carga el arancel integrado
+#Se descargan los archivos de la p·gina de AFIP y se carga el arancel integrado
 
 download.file(
   url = "https://www.afip.gob.ar/aduana/arancelintegrado/archivos/arancel.zip", 
@@ -20,13 +20,20 @@ download.file(
 )
 
 unzip(zipfile = 'Bases_afip/arancel.zip', exdir = "Bases_afip")
-unlink('Bases_afip/arancel.zip')
+unlink('Bases_afip/arancel.zip') # Borra el archivo zip
 
-nomenclador <- readr::read_delim("Bases_afip/nomenclador_27012022.txt", 
+fecha<-Sys.Date()
+anio<-substr(fecha,start=1,stop=4)
+mes<-substr(fecha,start=6,stop=7)
+dia<-substr(fecha,start=9,stop=10)
+ruta_base<-"Bases_afip/nomenclador_"
+
+
+nomenclador <- readr::read_delim(paste0(ruta_base,dia,mes,anio,".txt"), #El archivo de AFIP lleva la fecha de hoy
                                    delim = "@", escape_double = FALSE, col_names = FALSE, 
                                    trim_ws = TRUE)
 View(nomenclador)
-
+rm(fecha,anio,mes,dia,ruta_base)
 ####Data Wrangling - Modificamos el formato####
 
 Columnas <- c("ID", "SIM", "Derecho_exportacion", "Reintegro_extrazona", "Derecho_impo_extrazona",
