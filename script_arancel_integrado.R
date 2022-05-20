@@ -34,7 +34,7 @@ mes<-substr(fecha,start=6,stop=7)
 dia<-substr(fecha,start=9,stop=10)
 ruta_base<-"Bases_afip/nomenclador_"
 
-nomenclador <- readr::read_delim(paste0(ruta_base,dia,mes,anio,".txt", 
+nomenclador <- readr::read_delim(paste0(ruta_base,dia,mes,anio,".txt"), 
                                         delim = "@", escape_double = FALSE, col_names = FALSE, 
                                         trim_ws = TRUE) #El archivo de AFIP lleva la fecha de hoy
                                    
