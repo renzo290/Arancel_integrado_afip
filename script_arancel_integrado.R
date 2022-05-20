@@ -66,15 +66,13 @@ nomenclador <- nomenclador %>%
   mutate(Derecho_exportacion = as.numeric(Derecho_exportacion),
          Derecho_impo_extrazona = as.numeric(Derecho_impo_extrazona),
          Derecho_impo_intrazona = as.numeric(Derecho_impo_intrazona),
-         Derecho_impo_EM = as.numeric(Derecho_impo_EM),
          Reintegro_extrazona = as.numeric(Reintegro_extrazona),
          Reintegro_intrazona = as.numeric(Reintegro_intrazona),
-         Codigo_unidad_derecho_especifico = as.numeric(Codigo_unidad_derecho_especifico))
+         )
 
 #Se modifica el encoding de la columna "Descripcion"
 
 Encoding(nomenclador$Descripcion) <- "latin1" 
-
 #Tablas resumidas
 
 table(nomenclador$Derecho_exportacion)
@@ -89,6 +87,29 @@ ncm <- nomenclador %>%
             dex = mean(Derecho_exportacion))
 
 sum(ncm$cantidad)
+
+faltantes_nomenclador<-nomenclador%>% #####Corregimos observaciones con DEX faltantes
+  filter(is.na(Derecho_exportacion))
+head(faltantes_nomenclador)
+
+faltantes_nomenclador<-faltantes_nomenclador%>%
+  mutate(Derecho_exportacion=ifelse(SIM=="2008.19.00.110W",0, 
+                                    Derecho_exportacion), 
+         Reintegro_intrazona=ifelse(SIM=="2008.19.00.110W",3.25, 
+                                    Reintegro_intrazona),
+         Reintegro_extrazona=ifelse(SIM=="2008.19.00.110W",3.25, 
+                                    Reintegro_extrazona),
+         Derecho_impo_intrazona=ifelse(SIM=="2008.19.00.110W",0, 
+                                       Derecho_impo_intrazona),
+         Derecho_impo_extrazona=ifelse(SIM=="2008.19.00.110W",14, 
+                                       Derecho_impo_extrazona)
+         )
+
+nomenclador<-nomenclador%>%
+  filter(!is.na(Derecho_exportacion))%>%
+  rbind(faltantes_nomenclador)
+
+rm(faltantes_nomenclador)
 
 ####Se exportan el archivo en otro formato####
 
