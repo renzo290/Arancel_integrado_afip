@@ -1,14 +1,13 @@
 
-#####Depuraci�n de la base de Arancel Integrado Com�n desde la p�gina de AFIP####
+#####Depuracion de la base de Arancel Integrado Comun desde la pagina de AFIP####
 
 #Paquetes
-
 
 library(tidyverse)
 library(openxlsx)
 
 #setwd("C:/Users/Ministerio/Documents/arancel_integrado_afip")
-#Si no est� creada, se crea una carpeta para guardar las bases de AFIP
+#Si no esta creada, se crea una carpeta para guardar las bases de AFIP
 
 #Para chequear y configurar directorio de trabajo
 #getwd()
@@ -17,13 +16,13 @@ library(openxlsx)
 if(!file.exists("Bases_afip")) {
   dir.create("Bases_afip")
 }
-#Se descargan los archivos de la p�gina de AFIP y se carga el arancel integrado
+
+#Se descargan los archivos de la pagina de AFIP y se carga el arancel integrado
 
 download.file(
   url = "https://www.afip.gob.ar/aduana/arancelintegrado/archivos/arancel.zip", 
   destfile = "Bases_afip/arancel.zip", mode='wb'
 )
-
 
 unzip(zipfile = 'Bases_afip/arancel.zip', exdir = "Bases_afip")
 unlink('Bases_afip/arancel.zip') # Borra el archivo zip
@@ -34,7 +33,7 @@ mes<-substr(fecha,start=6,stop=7)
 dia<-substr(fecha,start=9,stop=10)
 ruta_base<-"Bases_afip/nomenclador_"
 
-nomenclador <- readr::read_delim(paste0(ruta_base,dia,mes,anio,".txt", 
+nomenclador <- readr::read_delim(paste0(ruta_base,dia,mes,anio,".txt"), 
                                         delim = "@", escape_double = FALSE, col_names = FALSE, 
                                         trim_ws = TRUE) #El archivo de AFIP lleva la fecha de hoy
                                    
