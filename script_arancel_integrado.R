@@ -1,23 +1,29 @@
 
-#####Depuración de la base de Arancel Integrado Común desde la página de AFIP####
+#####Depuraciï¿½n de la base de Arancel Integrado Comï¿½n desde la pï¿½gina de AFIP####
 
 #Paquetes
 
+
 library(tidyverse)
-require(openxlsx)
+library(openxlsx)
 
 #setwd("C:/Users/Ministerio/Documents/arancel_integrado_afip")
-#Si no está creada, se crea una carpeta para guardar las bases de AFIP
+#Si no estï¿½ creada, se crea una carpeta para guardar las bases de AFIP
+
+#Para chequear y configurar directorio de trabajo
+#getwd()
+#setwd("C:\Users\Ministerio\Desktop\Renzo\Proyectos RStudio\Arancel_integrado")
 
 if(!file.exists("Bases_afip")) {
   dir.create("Bases_afip")
 }
-#Se descargan los archivos de la página de AFIP y se carga el arancel integrado
+#Se descargan los archivos de la pï¿½gina de AFIP y se carga el arancel integrado
 
 download.file(
   url = "https://www.afip.gob.ar/aduana/arancelintegrado/archivos/arancel.zip", 
   destfile = "Bases_afip/arancel.zip", mode='wb'
 )
+
 
 unzip(zipfile = 'Bases_afip/arancel.zip', exdir = "Bases_afip")
 unlink('Bases_afip/arancel.zip') # Borra el archivo zip
@@ -28,12 +34,13 @@ mes<-substr(fecha,start=6,stop=7)
 dia<-substr(fecha,start=9,stop=10)
 ruta_base<-"Bases_afip/nomenclador_"
 
-
-nomenclador <- readr::read_delim(paste0(ruta_base,dia,mes,anio,".txt"), #El archivo de AFIP lleva la fecha de hoy
-                                   delim = "@", escape_double = FALSE, col_names = FALSE, 
-                                   trim_ws = TRUE)
+nomenclador <- readr::read_delim(paste0(ruta_base,dia,mes,anio,".txt", 
+                                        delim = "@", escape_double = FALSE, col_names = FALSE, 
+                                        trim_ws = TRUE) #El archivo de AFIP lleva la fecha de hoy
+                                   
 View(nomenclador)
 rm(fecha,anio,mes,dia,ruta_base)
+                                 
 ####Data Wrangling - Modificamos el formato####
 
 Columnas <- c("ID", "SIM", "Derecho_exportacion", "Reintegro_extrazona", "Derecho_impo_extrazona",
