@@ -88,24 +88,22 @@ ncm <- nomenclador %>%
 
 sum(ncm$cantidad)
 
-faltantes_nomenclador<-nomenclador%>% #####Corregimos observaciones con DEX faltantes
+#Se modifican observaciones don datos faltantes
+
+faltantes_nomenclador <- nomenclador %>% 
   filter(is.na(Derecho_exportacion))
+
 head(faltantes_nomenclador)
 
-faltantes_nomenclador<-faltantes_nomenclador%>%
-  mutate(Derecho_exportacion=ifelse(SIM=="2008.19.00.110W",0, 
-                                    Derecho_exportacion), 
-         Reintegro_intrazona=ifelse(SIM=="2008.19.00.110W",3.25, 
-                                    Reintegro_intrazona),
-         Reintegro_extrazona=ifelse(SIM=="2008.19.00.110W",3.25, 
-                                    Reintegro_extrazona),
-         Derecho_impo_intrazona=ifelse(SIM=="2008.19.00.110W",0, 
-                                       Derecho_impo_intrazona),
-         Derecho_impo_extrazona=ifelse(SIM=="2008.19.00.110W",14, 
-                                       Derecho_impo_extrazona)
+faltantes_nomenclador <- faltantes_nomenclador%>%
+  mutate(Derecho_exportacion=ifelse(SIM=="2008.19.00.110W",0,     Derecho_exportacion), 
+         Reintegro_intrazona=ifelse(SIM=="2008.19.00.110W",3.25,  Reintegro_intrazona),
+         Reintegro_extrazona=ifelse(SIM=="2008.19.00.110W",3.25,  Reintegro_extrazona),
+         Derecho_impo_intrazona=ifelse(SIM=="2008.19.00.110W",0,  Derecho_impo_intrazona),
+         Derecho_impo_extrazona=ifelse(SIM=="2008.19.00.110W",14, Derecho_impo_extrazona)
          )
 
-nomenclador<-nomenclador%>%
+nomenclador <- nomenclador %>%
   filter(!is.na(Derecho_exportacion))%>%
   rbind(faltantes_nomenclador)
 
