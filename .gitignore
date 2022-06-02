@@ -44,6 +44,10 @@ vignettes/*.pdf
 #*.xls
 #*.xlsx
 ~$*
- # Text files
+
+# Text files
 *.txt
 *.ini
+
+#Carpetas
+Base_depurada
