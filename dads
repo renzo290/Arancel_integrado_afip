@@ -1,0 +1,258 @@
+warning: LF will be replaced by CRLF in .Rhistory.
+The file will have its original line endings in your working directory
+[1mdiff --git a/.Rhistory b/.Rhistory[m
+[1mindex 822703e..b5f540b 100644[m
+[1m--- a/.Rhistory[m
+[1m+++ b/.Rhistory[m
+[36m@@ -1,90 +1,4 @@[m
+ codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM==26169000 ),72910, #Minerales preciosos[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM==26180000 ),241009, #Industrias básicas de hierro y acero[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM==27011900 ),51000, #Extracción de carbón[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=27040010 & NCM<= 27060000),191000, #Fabricación de productos de coque[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=27075000 & NCM<=27141000),192000, #Fabricación de productos de la refinación del petróleo[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM==28013000 ) | (NCM>=28091000 & NCM<=28334010) | (NCM>=28342930 & NCM<=28353110) | (NCM>=28366000 & NCM<=28369911) | (NCM>=28371914 & NCM<=28433090) | (NCM>=28499010 & NCM<=28539019),201180, #Materias químicas inorgánicas básicas ncop.[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM==28042910),201110, #Fabricación de gases industriales y medicinales comprimidos o licuados[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM==28080020 | (NCM>=28342110 & NCM<=28342190) | NCM==28369913 | (NCM>=31025019 & NCM<=31054000)),201300, #Abonos y compuestos de nitrógeno[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM==28441000),201140, #Combustible nuclear[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=29012200 & NCM<=29221996) | NCM==29225039 | NCM==29242119 | NCM==29251990 | NCM==29252950 | (NCM>=29242931 & NCM<=29242932) | (NCM>=29252950 & NCM<=29269022) | (NCM>=29291010 & NCM<=29321310) | (NCM>=29329992 & NCM<=29329994) | (NCM>=29332991 & NCM<=29333110) | (NCM==29339961 ) | NCM==29349915 | NCM==29420000 | (NCM>=38029030 & NCM<=38070000),201190, #Materias químicas orgánicas básicas ncop.[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=29224190 & NCM<=29225031) | (NCM>=29239020 & NCM<=29241931) | (NCM>=29242969 & NCM<=29242996) | NCM==29252919 | NCM==29252950 | (NCM>=29280020 & NCM<=29280042) | NCM==29321910 | (NCM>=29331112 & NCM<=29332924) | (NCM>=29333371 & NCM<=29339954) | (NCM>=29343010 & NCM<=29349141) | (NCM>=29349922 & NCM<=29419092) | (NCM>=30021011 & NCM<=30049075)  , 210010, #Medicamentos de uso humano[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM==29339956),210020, #Medicamento de uso veterinario[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=30059019 & NCM<=30069110),210090, #Fabricación de productos de laboratorio y productos botánicos de uso farmaceútico n.c.p.[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=32019090 & NCM<=32029013),201120, #Fabricación de curtientes[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=32030029 & NCM<=32065029),201130, #Colorantes básicos[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=33012520 & NCM<=33019010) | NCM==34031110 | (NCM>=37011021 & NCM<=37039090)  |NCM==37079030  |(NCM>=38112130 & NCM<=38112140) | (NCM>=38151100 & NCM<=38159092) | (NCM>=38231900 & NCM<=38249954),202908, #Productos químicos ncop.[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM==33012520 | NCM==33062000),202320, #Fabricación de cosméticos, perfumes y  productos de higiene y tocador[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=34021210 & NCM<=34029031),202320, #Fabricación de jabones y detergentes[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=34031110 & NCM<=34049014),202311, #Fabricación de preparados para limpieza, pulido y saneamiento[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=36030000 & NCM<=36061000),202906, #Explosivos y pirotecnia[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM==37061000),591110, #Producción de filmes y videocintas[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=38085010 & NCM<=38089422),202101, #Insecticidas y plaguicidas[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=38099120 & NCM<=38099219),202907, #Colas, adhesivos y aprestos (incluye tratamiento textiles)[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=38123012 & NCM<=38123921) | (NCM>=39069021 & NCM<=39076000) | (NCM>=39093010 & NCM<=39140011) | (NCM>=40021120 & NCM<=40029930),201401, #Fabricación de resinas y cauchos sintéticos (incluye poliuretano)[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM==38160012 | NCM==68159110 | (NCM>=69021090 & NCM<=69039019)),239100, #Producción de cerámica refractaria[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=39013010 & NCM<=39059930) | (NCM>=39081013 & NCM<=39089010) ,201409, #Fabricación de productos plásticos en forma primaria ncop.[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=39171010 & NCM<=39219012),222090, #Fabricación de productos plásticos en formas básicas y artículos de plástico n.c.p., excepto muebles[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=40012100 & NCM<=40012910),12900, #Caucho natural (cultivos perennes)[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM==40030000  | NCM==50072010),382020, #Caucho regenerado, desperdicios de seda (recuperación de residuos)[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=40059110 & NCM<=40070019 ) | (NCM>=40151100 & NCM<=40169400),221909, #Productos de caucho ncop.[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=40114000 & NCM<=40121900 ) | (NCM>=84099113 & NCM<=84099971) | (NCM>=87084011 & NCM<=87089529),293090, #Autopartes (neumáticos de caucho)[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM==41019010 ),101013, #Saladero de cuero y pieles de bovino[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=41041123 & NCM<= 41139000),151100, #Curtido y terminación de cueros[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM==42032100 ),323001, #Artículos deportivos[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM==43019000 ),14930, #Cría de animales para pieles[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=44050000 & NCM<= 44071900) | NCM==44031000 ,161002, #Aserrado madera implantada[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse(NCM==44034900 | (NCM>=44072950 & NCM<=44079940) ,161001, #Aserrado madera nativa[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM==44011000 ),22010, #Extracción bosques cultivados[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=44081010 & NCM<= 44130000),162100, #Fabricación de hojas de madera para enchapado; fabricación de tableros contrachapados; tableros laminados; tableros de partículas y tableros y paneles n.c.p.[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM==44160090 ),162300, #Recipientes de madera[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM==44170020 | (NCM>=44190000 & NCM<=44219000) | (NCM>=46012100 & NCM<=46021200)),162909, #Productos de madera ncop.[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM>=44184000 & NCM<=44189000 ),162201, #Productos de madera ncop.[m
+[31m-codigo_AFIP),[m
+[31m-codigo_AFIP=ifelse((NCM==45020000 ),162903, #Productos de corcho[m
+[31m-codigo_AFIP),[m
+ codigo_AFIP=ifelse((NCM>=47042900 & NCM<=47071000),170101, #Pasta de papel[m
+ codigo_AFIP),[m
+ codigo_AFIP=ifelse((NCM>=48010010 & NCM<=48030010) | (NCM>=48044200 & NCM<=48232091),170102, #Papel y cartón excepto envases[m
+[36m@@ -510,3 +424,89 @@[m [mmutate(CLAE_3=as.numeric(CLAE_G)[m
+ )%>%[m
+ select(c(actividad_economica,CLAE_3,porc_expo))[m
+ view(IVA_exp_2020)[m
+[32m+[m[32m#Paquetes[m
+[32m+[m[32mlibrary(tidyverse)[m
+[32m+[m[32mlibrary(openxlsx)[m
+[32m+[m[32m#setwd("C:/Users/Ministerio/Documents/arancel_integrado_afip")[m
+[32m+[m[32m#Si no esta creada, se crea una carpeta para guardar las bases de AFIP[m
+[32m+[m[32m#Para chequear y configurar directorio de trabajo[m
+[32m+[m[32m#getwd()[m
+[32m+[m[32m#setwd("C:\Users\Ministerio\Desktop\Renzo\Proyectos RStudio\Arancel_integrado")[m
+[32m+[m[32mif(!file.exists("Bases_afip")) {[m
+[32m+[m[32mdir.create("Bases_afip")[m
+[32m+[m[32m}[m
+[32m+[m[32m#Se descargan los archivos de la pagina de AFIP y se carga el arancel integrado[m
+[32m+[m[32mdownload.file([m
+[32m+[m[32murl = "https://www.afip.gob.ar/aduana/arancelintegrado/archivos/arancel.zip",[m
+[32m+[m[32mdestfile = "Bases_afip/arancel.zip", mode='wb'[m
+[32m+[m[32m)[m
+[32m+[m[32munzip(zipfile = 'Bases_afip/arancel.zip', exdir = "Bases_afip")[m
+[32m+[m[32munlink('Bases_afip/arancel.zip') # Borra el archivo zip[m
+[32m+[m[32mfecha<-Sys.Date()[m
+[32m+[m[32manio<-substr(fecha,start=1,stop=4)[m
+[32m+[m[32mmes<-substr(fecha,start=6,stop=7)[m
+[32m+[m[32mdia<-substr(fecha,start=9,stop=10)[m
+[32m+[m[32mruta_base<-"Bases_afip/nomenclador_"[m
+[32m+[m[32mnomenclador <- readr::read_delim(paste0(ruta_base,dia,mes,anio,".txt"),[m
+[32m+[m[32mdelim = "@", escape_double = FALSE, col_names = FALSE,[m
+[32m+[m[32mtrim_ws = TRUE) #El archivo de AFIP lleva la fecha de hoy[m
+[32m+[m[32mView(nomenclador)[m
+[32m+[m[32mrm(fecha,anio,mes,dia,ruta_base)[m
+[32m+[m[32m####Data Wrangling - Modificamos el formato####[m
+[32m+[m[32mColumnas <- c("ID", "SIM", "Derecho_exportacion", "Reintegro_extrazona", "Derecho_impo_extrazona",[m
+[32m+[m[32m"Reintegro_intrazona", "Derecho_impo_intrazona", "Derecho_impo_EM",[m
+[32m+[m[32m"Codigo_unidad_estadistica", "Codigo_unidad_derecho_especifico",[m
+[32m+[m[32m"Descripcion")[m
+[32m+[m[32mcolnames(nomenclador) <- Columnas[m
+[32m+[m[32mrm(Columnas)[m
+[32m+[m[32mnomenclador <- nomenclador %>%[m
+[32m+[m[32mmutate(Caracteres = nchar(SIM),[m
+[32m+[m[32mCapitulo = substr(SIM, 1, 2),[m
+[32m+[m[32mNCM_4 = substr(SIM, 1, 4),[m
+[32m+[m[32mNCM = substr(SIM, 1, 10)) %>%[m
+[32m+[m[32mfilter(Caracteres == 15) %>%[m
+[32m+[m[32mfilter(Capitulo != "00")[m
+[32m+[m[32mnomenclador <- select(nomenclador, SIM, Capitulo, NCM_4, NCM, Descripcion, Derecho_exportacion,[m
+[32m+[m[32mReintegro_intrazona, Reintegro_extrazona,[m
+[32m+[m[32mDerecho_impo_intrazona, Derecho_impo_extrazona)[m
+[32m+[m[32mnomenclador <- nomenclador %>%[m
+[32m+[m[32mmutate(Derecho_exportacion = as.numeric(Derecho_exportacion),[m
+[32m+[m[32mDerecho_impo_extrazona = as.numeric(Derecho_impo_extrazona),[m
+[32m+[m[32mDerecho_impo_intrazona = as.numeric(Derecho_impo_intrazona),[m
+[32m+[m[32mReintegro_extrazona = as.numeric(Reintegro_extrazona),[m
+[32m+[m[32mReintegro_intrazona = as.numeric(Reintegro_intrazona),[m
+[32m+[m[32m)[m
+[32m+[m[32m#Se modifica el encoding de la columna "Descripcion"[m
+[32m+[m[32mEncoding(nomenclador$Descripcion) <- "latin1"[m
+[32m+[m[32m#Tablas resumidas[m
+[32m+[m[32mtable(nomenclador$Derecho_exportacion)[m
+[32m+[m[32mtable(nomenclador$Derecho_impo_extrazona)[m
+[32m+[m[32mtable(nomenclador$Derecho_impo_intrazona)[m
+[32m+[m[32m#Agrupo a 8 dígitos[m
+[32m+[m[32mncm <- nomenclador %>%[m
+[32m+[m[32mgroup_by(NCM) %>%[m
+[32m+[m[32msummarise(cantidad = n(),[m
+[32m+[m[32mdex = mean(Derecho_exportacion))[m
+[32m+[m[32msum(ncm$cantidad)[m
+[32m+[m[32mfaltantes_nomenclador <- nomenclador %>%[m
+[32m+[m[32mfilter(is.na(Derecho_exportacion))[m
+[32m+[m[32mhead(faltantes_nomenclador)[m
+[32m+[m[32mfaltantes_nomenclador <- faltantes_nomenclador%>%[m
+[32m+[m[32mmutate(Derecho_exportacion=ifelse(SIM=="2008.19.00.110W",0,     Derecho_exportacion),[m
+[32m+[m[32mReintegro_intrazona=ifelse(SIM=="2008.19.00.110W",3.25,  Reintegro_intrazona),[m
+[32m+[m[32mReintegro_extrazona=ifelse(SIM=="2008.19.00.110W",3.25,  Reintegro_extrazona),[m
+[32m+[m[32mDerecho_impo_intrazona=ifelse(SIM=="2008.19.00.110W",0,  Derecho_impo_intrazona),[m
+[32m+[m[32mDerecho_impo_extrazona=ifelse(SIM=="2008.19.00.110W",14, Derecho_impo_extrazona)[m
+[32m+[m[32m)[m
+[32m+[m[32mnomenclador <- nomenclador %>%[m
+[32m+[m[32mfilter(!is.na(Derecho_exportacion))%>%[m
+[32m+[m[32mrbind(faltantes_nomenclador)[m
+[32m+[m[32mrm(faltantes_nomenclador)[m
+[32m+[m[32mif(!file.exists("Base_depurada")) {[m
+[32m+[m[32mdir.create("Base_depurada")[m
+[32m+[m[32m}[m
+[32m+[m[32m#Formato Excel[m
+[32m+[m[32mwrite.xlsx(nomenclador, file = "Base_depurada/nomenclador.xlsx", dec = ",",[m
+[32m+[m[32moverwrite = T)[m
+[32m+[m[32m#Formato csv[m
+[32m+[m[32mwrite.csv(nomenclador, file = "Base_depurada/nomenclador.csv")[m
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mindex 279ddb4..dff3272 100644[m
+[1m--- a/.gitignore[m
+[1m+++ b/.gitignore[m
+[36m@@ -41,8 +41,8 @@[m [mvignettes/*.pdf[m
+ #CSV and excel files[m
+ [m
+ *.csv[m
+[31m-*.xls[m
+[31m-*.xlsx[m
+[32m+[m[32m#*.xls[m
+[32m+[m[32m#*.xlsx[m
+ ~$*[m
+  # Text files[m
+ *.txt[m
+[1mdiff --git a/script_arancel_integrado.R b/script_arancel_integrado.R[m
+[1mindex 8ba6eed..619eced 100644[m
+[1m--- a/script_arancel_integrado.R[m
+[1m+++ b/script_arancel_integrado.R[m
+[36m@@ -5,6 +5,8 @@[m
+ [m
+ library(tidyverse)[m
+ library(openxlsx)[m
+[32m+[m[32mlibrary(readxl)[m[41m[m
+[32m+[m[41m[m
+ [m
+ #setwd("C:/Users/Ministerio/Documents/arancel_integrado_afip")[m
+ #Si no esta creada, se crea una carpeta para guardar las bases de AFIP[m
+[36m@@ -73,13 +75,8 @@[m [mnomenclador <- nomenclador %>%[m
+ #Se modifica el encoding de la columna "Descripcion"[m
+ [m
+ Encoding(nomenclador$Descripcion) <- "latin1" [m
+[31m-#Tablas resumidas[m
+ [m
+[31m-table(nomenclador$Derecho_exportacion)[m
+[31m-table(nomenclador$Derecho_impo_extrazona)[m
+[31m-table(nomenclador$Derecho_impo_intrazona)[m
+[31m-[m
+[31m-#Agrupo a 8 dígitos[m
+[32m+[m[32m#Agrupo a 8 dígitos -> No considera los dexs variables[m[41m[m
+ [m
+ ncm <- nomenclador %>% [m
+   group_by(NCM) %>% [m
+[36m@@ -109,6 +106,27 @@[m [mnomenclador <- nomenclador %>%[m
+ [m
+ rm(faltantes_nomenclador)[m
+ [m
+[32m+[m[32m#Se modifican los derechos de hidrocarburos que tienen derechos móviles[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32mhidrocarburos <- read_excel("Auxiliar/hidrocarburos.xlsx",[m[41m [m
+[32m+[m[32m                            sheet = "posiciones")[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32mnomenclador <- left_join(nomenclador, hidrocarburos, by = "NCM")[m[41m[m
+[32m+[m[32mnomenclador <- nomenclador %>%[m[41m [m
+[32m+[m[32m  filter(is.na(Hidrocarburos)) %>%[m[41m [m
+[32m+[m[32m  select(1:10)[m[41m[m
+[32m+[m[32mrm(hidrocarburos)[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32mhidrocarburos_info <- read_excel("Auxiliar/hidrocarburos.xlsx",[m[41m [m
+[32m+[m[32m                            sheet = "info")[m[41m[m
+[32m+[m[32mnomenclador <- rbind(nomenclador, hidrocarburos_info)[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m#Tablas resumidas[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32mtable(nomenclador$Derecho_exportacion)[m[41m[m
+[32m+[m[32mtable(nomenclador$Derecho_impo_extrazona)[m[41m[m
+[32m+[m[32mtable(nomenclador$Derecho_impo_intrazona)[m[41m[m
+[32m+[m[41m[m
+ ####Se exportan el archivo en otro formato####[m
+ [m
+ if(!file.exists("Base_depurada")) {[m

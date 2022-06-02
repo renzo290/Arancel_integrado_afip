@@ -41,8 +41,8 @@ vignettes/*.pdf
 #CSV and excel files
 
 *.csv
-*.xls
-*.xlsx
+#*.xls
+#*.xlsx
 ~$*
  # Text files
 *.txt

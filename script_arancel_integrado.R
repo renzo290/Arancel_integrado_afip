@@ -5,6 +5,8 @@
 
 library(tidyverse)
 library(openxlsx)
+library(readxl)
+
 
 #setwd("C:/Users/Ministerio/Documents/arancel_integrado_afip")
 #Si no esta creada, se crea una carpeta para guardar las bases de AFIP
@@ -73,13 +75,8 @@ nomenclador <- nomenclador %>%
 #Se modifica el encoding de la columna "Descripcion"
 
 Encoding(nomenclador$Descripcion) <- "latin1" 
-#Tablas resumidas
 
-table(nomenclador$Derecho_exportacion)
-table(nomenclador$Derecho_impo_extrazona)
-table(nomenclador$Derecho_impo_intrazona)
-
-#Agrupo a 8 dígitos
+#Agrupo a 8 dígitos -> No considera los dexs variables
 
 ncm <- nomenclador %>% 
   group_by(NCM) %>% 
@@ -109,19 +106,37 @@ nomenclador <- nomenclador %>%
 
 rm(faltantes_nomenclador)
 
+#Se modifican los derechos de hidrocarburos que tienen derechos móviles
+
+hidrocarburos <- read_excel("Auxiliar/hidrocarburos.xlsx", 
+                            sheet = "posiciones")
+
+nomenclador <- left_join(nomenclador, hidrocarburos, by = "NCM")
+nomenclador <- nomenclador %>% 
+  filter(is.na(Hidrocarburos)) %>% 
+  select(1:10)
+rm(hidrocarburos)
+
+hidrocarburos_info <- read_excel("Auxiliar/hidrocarburos.xlsx", 
+                            sheet = "info")
+nomenclador <- rbind(nomenclador, hidrocarburos_info)
+
+#Tablas resumidas
+
+table(nomenclador$Derecho_exportacion)
+table(nomenclador$Derecho_impo_extrazona)
+table(nomenclador$Derecho_impo_intrazona)
+
 ####Se exportan el archivo en otro formato####
 
 if(!file.exists("Base_depurada")) {
   dir.create("Base_depurada")
 }
 
-#Formato Excel
+#Formato Excel - Separamos decimales con coma para que queden todas las col iguales
 
-write.xlsx(nomenclador, file = "Base_depurada/nomenclador.xlsx", dec = ",",
+write.xlsx(nomenclador, file = "Base_depurada/nomenclador.xlsx", dec = ".",
            overwrite = T) 
 
-#Formato csv
-
-write.csv(nomenclador, file = "Base_depurada/nomenclador.csv") 
 
 
