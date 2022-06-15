@@ -1,20 +1,19 @@
 
 #####Depuracion de la base de Arancel Integrado Comun desde la pagina de AFIP####
 
-#Paquetes
+####Paquetes####
 
 library(tidyverse)
 library(openxlsx)
 library(readxl)
 
-
-#setwd("C:/Users/Ministerio/Documents/arancel_integrado_afip")
-#Si no esta creada, se crea una carpeta para guardar las bases de AFIP
+####Directorio de trabajo y archivos####
 
 #Para chequear y configurar directorio de trabajo
 #getwd()
 #setwd("C:\Users\Ministerio\Desktop\Renzo\Proyectos RStudio\Arancel_integrado")
 
+#Si no esta creada, se crea una carpeta para guardar las bases de AFIP
 if(!file.exists("Bases_afip")) {
   dir.create("Bases_afip")
 }
@@ -40,7 +39,7 @@ nomenclador <- readr::read_delim(paste0(ruta_base,dia,mes,anio,".txt"),
                                         trim_ws = TRUE) #El archivo de AFIP lleva la fecha de hoy
                                    
 View(nomenclador)
-rm(fecha,anio,mes,dia,ruta_base)
+rm(fecha,ruta_base)
                                  
 ####Data Wrangling - Modificamos el formato####
 
@@ -75,15 +74,6 @@ nomenclador <- nomenclador %>%
 #Se modifica el encoding de la columna "Descripcion"
 
 Encoding(nomenclador$Descripcion) <- "latin1" 
-
-#Agrupo a 8 dígitos -> No considera los dexs variables
-
-ncm <- nomenclador %>% 
-  group_by(NCM) %>% 
-  summarise(cantidad = n(),
-            dex = mean(Derecho_exportacion))
-
-sum(ncm$cantidad)
 
 #Se modifican observaciones don datos faltantes
 
@@ -121,7 +111,18 @@ hidrocarburos_info <- read_excel("Auxiliar/hidrocarburos.xlsx",
                             sheet = "info")
 nomenclador <- rbind(nomenclador, hidrocarburos_info)
 
-#Tablas resumidas
+####Tablas resumidas####
+
+#Agrupo a 8 dígitos -> No considera los dexs variables
+
+ncm <- nomenclador %>% 
+  group_by(NCM) %>% 
+  summarise(cantidad = n(),
+            dex = mean(Derecho_exportacion))
+
+sum(ncm$cantidad)
+
+#Tablas
 
 table(nomenclador$Derecho_exportacion)
 table(nomenclador$Derecho_impo_extrazona)
@@ -133,10 +134,14 @@ if(!file.exists("Base_depurada")) {
   dir.create("Base_depurada")
 }
 
+ruta_depurada<-"Base_depurada/"
+
 #Formato Excel - Separamos decimales con coma para que queden todas las col iguales
 
-write.xlsx(nomenclador, file = "Base_depurada/nomenclador.xlsx", dec = ".",
-           overwrite = T) 
+write.xlsx(nomenclador, file = paste0(ruta_depurada, "nomenclador_",dia,"_",
+                                      mes,"_",anio,".xlsx"),dec = ".", overwrite = T) 
+
+rm(anio, dia, mes, ruta_depurada, hidrocarburos_info, ncm, nomenclador)
 
 
 
