@@ -111,6 +111,10 @@ hidrocarburos_info <- read_excel("Auxiliar/hidrocarburos.xlsx",
                             sheet = "info")
 nomenclador <- rbind(nomenclador, hidrocarburos_info)
 
+nomenclador<- nomenclador%>%
+  mutate(Derecho_exportacion=gsub("[.]",",",Derecho_exportacion)) #Cambia puntos por comas en columna Derecho_exportacion
+
+table(nomenclador$Derecho_exportacion)
 ####Tablas resumidas####
 
 #Agrupo a 8 dígitos -> No considera los dexs variables
