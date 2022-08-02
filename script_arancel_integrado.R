@@ -111,10 +111,73 @@ hidrocarburos_info <- read_excel("Auxiliar/hidrocarburos.xlsx",
                             sheet = "info")
 nomenclador <- rbind(nomenclador, hidrocarburos_info)
 
+#Se suman decretos de beneficios en dexs, automotriz y pymes. Hay que corregirles el formato
+
+#Autopartes
+Autopartes_incremental <- read_excel("Auxiliar/Autopartes_incremental.xlsx")
+
+Autopartes_incremental <- Autopartes_incremental %>% 
+  mutate(NCM_correcto=ifelse(substr(NCM,start=5,stop=5)==".",1,0)) #Los NCM con buen formato tienen siempre en el quinto dígito un punto
+
+solo_correctos<-Autopartes_incremental%>%
+  subset(NCM_correcto==1) %>% 
+  select(NCM, Autopartes_incremental)
+
+correccion_NCM<-Autopartes_incremental %>%
+  subset(NCM_correcto==0)%>% #Los que tienen mal formato es porque excel pensó que eran fechas; por eso usamos as.Date()
+  mutate(NCM=as.numeric(NCM), 
+         NCM_corregido=as.Date(NCM,origin = "1899-12-30"), 
+         NCM_corregido=gsub("-",".",NCM_corregido))%>%
+  select(NCM_corregido, Autopartes_incremental) %>% 
+  rename(NCM = NCM_corregido)
+
+Autopartes_incremental_ok<-rbind(solo_correctos,correccion_NCM)%>%
+  arrange(NCM)
+
+rm(Autopartes_incremental, correccion_NCM, solo_correctos)
+
+#Autos
+Autos_incremental <- read_excel("Auxiliar/Autos_incremental.xlsx") #No se corrige porque está OK
+
+#PYMES
+PYMES <- read_excel("Auxiliar/Decreto_PyMEs.xlsx")
+
+PYMES <- PYMES %>% 
+  mutate(NCM_correcto=ifelse(substr(NCM,start=5,stop=5)==".",1,0)) #Los NCM con buen formato tienen siempre en el quinto dígito un punto
+
+solo_correctos<-PYMES%>%
+  subset(NCM_correcto==1) %>% 
+  select(NCM, Beneficio_PYME)
+
+correccion_NCM<-PYMES %>%
+  subset(NCM_correcto==0)%>% #Los que tienen mal formato es porque excel pensó que eran fechas; por eso usamos as.Date()
+  mutate(NCM=as.numeric(NCM), 
+         NCM_corregido=as.Date(NCM,origin = "1899-12-30"), 
+         NCM_corregido=gsub("-",".",NCM_corregido))%>%
+  select(NCM_corregido, Beneficio_PYME) %>% 
+  rename(NCM = NCM_corregido)
+
+PYMES_ok<-rbind(solo_correctos,correccion_NCM)%>%
+  arrange(NCM)
+
+rm(PYMES, correccion_NCM, solo_correctos)
+
+#Agregamos columnas al nomenclador
+
+nomenclador <- left_join(nomenclador, Autopartes_incremental_ok, by = "NCM")
+nomenclador <- left_join(nomenclador, Autos_incremental, by = "NCM")
+nomenclador <- left_join(nomenclador, PYMES_ok, by = "NCM")
+
+nomenclador$Autopartes_incremental[is.na(nomenclador$Autopartes_incremental)] <- 0
+nomenclador$Autos_incremental[is.na(nomenclador$Autos_incremental)] <- 0
+nomenclador$Beneficio_PYME[is.na(nomenclador$Beneficio_PYME)] <- 0
+
+#Se corrigen decimales de columna "Derechos_Exportación"
 nomenclador<- nomenclador%>%
   mutate(Derecho_exportacion=gsub("[.]",",",Derecho_exportacion)) #Cambia puntos por comas en columna Derecho_exportacion
 
 table(nomenclador$Derecho_exportacion)
+
 ####Tablas resumidas####
 
 #Agrupo a 8 dígitos -> No considera los dexs variables
@@ -145,7 +208,4 @@ ruta_depurada<-"Base_depurada/"
 write.xlsx(nomenclador, file = paste0(ruta_depurada, "nomenclador_",dia,"_",
                                       mes,"_",anio,".xlsx"),dec = ".", overwrite = T) 
 
-rm(anio, dia, mes, ruta_depurada, hidrocarburos_info, ncm, nomenclador)
-
-
-
+rm(list = ls())
